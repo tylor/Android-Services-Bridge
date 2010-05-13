@@ -8,14 +8,14 @@
 		android:singleLine="true" android:inputType="textAutoCorrect" />
 
 	<EditText android:layout_width="fill_parent"
-		android:layout_height="0dip" android:layout_weight="1" android:id="@+id/Text"
+		android:layout_height="0dip" android:layout_weight="1" android:id="@+id/Body"
 		android:gravity="top|left" android:autoText="true"
 		android:inputType="textAutoCorrect|textMultiLine|textCapSentences" />
 
 	<TableRow>
 		<CheckBox android:id="@+id/publish" android:text="@string/publish"
 			android:layout_weight="0.5" android:layout_width="wrap_content" />
-		<Button android:id="@+id/save_post" android:text="@string/save"
+		<Button android:id="@+id/node_save_button" android:text="@string/save"
 			android:layout_weight="0.5" android:layout_width="wrap_content" />
 	</TableRow>
 </TableLayout>
