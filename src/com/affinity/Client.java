@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -198,14 +199,15 @@ public class Client {
 	    ArrayList<NameValuePair> values = new ArrayList<NameValuePair>(1);
 	    values.add(new BasicNameValuePair("method", "\"android.features\""));
 	    
-	    JSONObject nodeObject = new JSONObject();
-	    nodeObject.put("nid", "1");
+	    // JSONObject nodeObject = new JSONObject();
+	    // nodeObject.put("nid", "1");
 	    
-	    values.add(new BasicNameValuePair("node", nodeObject.toString()));
+	    values.add(new BasicNameValuePair("nid", "1"));
+
 	    return values;
 	}
 	
-	public static boolean getFeatures() {
+	public static JSONObject getFeatures() {
 		String url = "http://10.0.2.2/services/json";
 		DefaultHttpClient http_client = new DefaultHttpClient();
 		HttpPost post_method = new HttpPost(url);
@@ -222,8 +224,6 @@ public class Client {
             ArrayList<NameValuePair> values = new ArrayList<NameValuePair>(1);
             
             values = getFeaturesValues();
-            
-            Log.d("client", values.toString());
             
             UrlEncodedFormEntity requestEntity = new UrlEncodedFormEntity(values, HTTP.UTF_8);
             
@@ -256,13 +256,13 @@ public class Client {
 
 				instream.close();
 				
-				return data.getBoolean("node");
+				return data;
 			}
 
 		} catch (Exception e) {
 			Log.d("client", "Exception in client: " + e.getMessage());
 		}
 		
-		return false;
+		return null;
 	}
 }

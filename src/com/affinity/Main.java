@@ -1,5 +1,8 @@
 package com.affinity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +12,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.affinity.NodeCreate;
 
@@ -34,25 +37,43 @@ public class Main extends Activity implements OnClickListener {
         // In the meantime, create the layout programmatically.
         LinearLayout layout = new LinearLayout(this);
         
+        //TextView affinity_text = new TextView(this);
+        
+        //affinity_text.setText("Available Features");
+        //affinity_text.setTextSize(25);
+        //affinity_text.setId(2);
+        //affinity_text.setLayoutParams();
+        
+        //affinity_text.setPadding(40, 0, 0, 40);
+        //affinity_text.setGravity(0);
+        
+        //layout.addView(affinity_text, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+        
         // This should eventually be cached
         // (Maybe cache is updated by a thread running in the background. Don't want to wait when starting.)
-        //Client.getFeatures();
-        
-        
-        Button b = new Button(this);
-        b.setText("Dynamic Button");
-        b.setId(1);
-        b.setOnClickListener(this);
-        
-        //b.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
-        
-        //btnCreateNode.setId(1);
-        //btnCreateNode.setOnClickListener(this);
-        
-        //layout.addView(b);
-        
-        layout.addView(b);
-        
+        JSONObject features = Client.getFeatures();
+		
+        // This needs to be abstracted to handle all features.
+		String nodefeature = null;
+		try {
+			nodefeature = features.get("node").toString();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(nodefeature.equals("true")) {
+			NodeCreate feature = new NodeCreate();
+		    
+		    Button b = new Button(this);
+		    b.setText(feature.buttonText());
+		   // b.setPadding(0, 100, 0, 0);
+		   // b.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+		    // Must be a good way to do this.
+		    b.setId(1);
+		    b.setOnClickListener(this);
+		    
+		    layout.addView(b, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+		}
         setContentView(layout);
     }
     
@@ -62,7 +83,6 @@ public class Main extends Activity implements OnClickListener {
 			Log.d("main", Client.getNode(1));
 			break;*/
     	case 1:
-    		// Log.d("main", Client.getNode(2));
     		try {
 	    		Intent intentEdit = new Intent(this, NodeCreate.class);
 				startActivity(intentEdit);

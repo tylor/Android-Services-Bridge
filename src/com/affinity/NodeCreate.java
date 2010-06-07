@@ -6,13 +6,18 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.affinity.Client;
 import com.affinity.model.Node;
 
-public class NodeCreate extends Activity implements OnClickListener {
+public class NodeCreate extends Activity implements OnClickListener, DrupalFeature {
 	private Button btnSave;
+	
+	public String buttonText() {
+		return "Create node";
+	}
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
