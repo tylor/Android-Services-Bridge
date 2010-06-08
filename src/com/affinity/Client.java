@@ -28,6 +28,12 @@ import android.util.Log;
 
 // This should be an interface, and moved into ClientJson.java
 public class Client {
+	String url;
+	
+	public Client(String url) {
+		// This is the JSON specific endpoint
+		this.url = url;
+	}
 
 	private static String convertStreamToString(InputStream is) {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
@@ -205,7 +211,7 @@ public class Client {
 	    return values;
 	}
 	
-	public static JSONObject getFeatures() {
+	public JSONObject getFeatures() {
 		String url = "http://10.0.2.2/services/json";
 		DefaultHttpClient http_client = new DefaultHttpClient();
 		HttpPost post_method = new HttpPost(url);

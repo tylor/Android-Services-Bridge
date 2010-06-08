@@ -10,12 +10,14 @@ import java.util.Vector;
  */
 public class ContentType {
 	private String machineName;
+	private String name;
 	private Vector<Field> fields;
 	
 	public ContentType() { }
 	
-	public ContentType(String type) {
-		this.machineName = type;
+	public ContentType(String name, String machineName) {
+		this.name = name;
+		this.machineName = machineName;
 	}
 	
 	public String getMachineName() {
@@ -28,5 +30,9 @@ public class ContentType {
 
 	public Vector<Field> getFields() {
 		return fields;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

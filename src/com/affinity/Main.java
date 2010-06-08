@@ -15,10 +15,13 @@ import android.widget.LinearLayout;
 import com.affinity.NodeCreate;
 
 import com.affinity.Client;
+import com.affinity.model.Site;
 
 public class Main extends Activity implements OnClickListener {
 	//private Button btnGetInfo;
 	//private Button btnCreateNode;
+	
+	Site site = new Site("Maps Site", "http://10.0.2.2/");
 	
     /** Called when the activity is first created. */
     @Override
@@ -49,7 +52,8 @@ public class Main extends Activity implements OnClickListener {
         
         // This should eventually be cached
         // (Maybe cache is updated by a thread running in the background. Don't want to wait when starting.)
-        JSONObject features = Client.getFeatures();
+        Client client = new ClientJson(site.getUrl());
+        JSONObject features = client.getFeatures();
 		
         // This needs to be abstracted to handle all features.
 		String nodefeature = null;

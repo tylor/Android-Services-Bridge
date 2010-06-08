@@ -22,6 +22,7 @@ public class NodeCreate extends Activity implements OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.node_create);
+        // maybe here is where I can add extra fields.
         
         btnSave = (Button) findViewById(R.id.node_save_button);
         btnSave.setOnClickListener(this);
@@ -36,7 +37,7 @@ public class NodeCreate extends Activity implements OnClickListener {
 			final String body = String.valueOf(//
 					((TextView) findViewById(R.id.Body)).getText());
 			
-			Node new_node = new Node(title, body, new ContentType("page"));
+			Node new_node = new Node(title, body, new ContentType("Page", "page"));
 			
 			Client.createNode(new_node);
 			
