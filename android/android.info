@@ -1,0 +1,6 @@
+; $Id$
+name = Android
+description = Exposes Android features for the site.
+package = Services
+dependencies[] = services
+core = 6.x

@@ -1,0 +1,42 @@
+<?php
+// $Id$
+
+function android_enable() {
+  cache_clear_all('services:methods', 'cache');
+}
+
+function android_disable() {
+  cache_clear_all('services:methods', 'cache');
+}
+
+function android_service() {
+  return array(
+    
+    // android.features
+    array(
+      '#method' => 'android.features',
+      '#callback' => 'android_get_features',
+      '#args'             => array(
+        array(
+          '#name'           => 'nid',
+          '#type'           => 'int',
+         // '#optional'       => TRUE,
+          '#description'    => t('A node ID.')),
+          ),
+      '#access callback'  => 'android_access',
+      '#access arguments' => array('true'),
+      '#return' => 'struct',
+      '#help' => t('Retrieves the Android features available for this site.')),
+  );
+}
+
+function android_get_features($nid) {
+  $features = array();
+  module_exists('node_service') ? $features['node'] = 'true' : $features['node'] = 'false';
+  module_exists('views_service') ? $features['views'] = 'true' : $features['views'] = 'false';
+  return $features;
+}
+
+function android_access($arg) {
+  return true;
+}
