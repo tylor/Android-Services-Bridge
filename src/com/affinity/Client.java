@@ -6,8 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Vector;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
@@ -24,7 +22,7 @@ import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.affinity.model.ContentType;
+import com.affinity.model.Node;
 
 import android.util.Log;
 
@@ -122,20 +120,20 @@ public class Client {
 		return null;
 	}
 	
-	private static ArrayList<NameValuePair> createNodeValues(ContentType node) throws UnsupportedEncodingException, JSONException {
+	private static ArrayList<NameValuePair> createNodeValues(Node node) throws UnsupportedEncodingException, JSONException {
 	    ArrayList<NameValuePair> values = new ArrayList<NameValuePair>(1);
 	    values.add(new BasicNameValuePair("method", "\"node.save\""));
 	    
 	    JSONObject nodeObject = new JSONObject();
 	    nodeObject.put("title", node.getTitle());
 	    nodeObject.put("body", node.getBody());
-	    nodeObject.put("type", node.getType());
+	    nodeObject.put("type", node.getType().getMachineName());
 	    
 	    values.add(new BasicNameValuePair("node", nodeObject.toString()));
 	    return values;
 	}
 	
-	public static void createNode(ContentType node) {
+	public static void createNode(Node new_node) {
 		String url = "http://10.0.2.2/services/json";
 		DefaultHttpClient http_client = new DefaultHttpClient();
 		HttpPost post_method = new HttpPost(url);
@@ -150,7 +148,7 @@ public class Client {
 
             ArrayList<NameValuePair> values = new ArrayList<NameValuePair>(1);
             
-            values = createNodeValues(node);
+            values = createNodeValues(new_node);
             
             UrlEncodedFormEntity requestEntity = new UrlEncodedFormEntity(values, HTTP.UTF_8);
             

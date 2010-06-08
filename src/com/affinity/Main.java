@@ -12,15 +12,13 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-
 import com.affinity.NodeCreate;
 
 import com.affinity.Client;
 
 public class Main extends Activity implements OnClickListener {
-	private Button btnGetInfo;
-	private Button btnCreateNode;
+	//private Button btnGetInfo;
+	//private Button btnCreateNode;
 	
     /** Called when the activity is first created. */
     @Override

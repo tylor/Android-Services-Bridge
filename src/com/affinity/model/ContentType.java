@@ -1,5 +1,7 @@
 package com.affinity.model;
 
+import java.util.Vector;
+
 /**
  * Simple class to represent content types in Drupal.
  * 
@@ -7,30 +9,24 @@ package com.affinity.model;
  *
  */
 public class ContentType {
-	private String title;
-	private String body;
-	private String type = "page";
+	private String machineName;
+	private Vector<Field> fields;
 	
 	public ContentType() { }
 	
-	public ContentType(String title, String body) {
-		this.title = title;
-		this.body = body;
+	public ContentType(String type) {
+		this.machineName = type;
 	}
 	
-	public void setTitle(String title) {
-		this.title = title;
+	public String getMachineName() {
+		return machineName;
 	}
-	public String getTitle() {
-		return title;
+
+	public void setFields(Vector<Field> fields) {
+		this.fields = fields;
 	}
-	public void setBody(String body) {
-		this.title = body;
-	}
-	public String getBody() {
-		return body;
-	}
-	public String getType() {
-		return type;
+
+	public Vector<Field> getFields() {
+		return fields;
 	}
 }
