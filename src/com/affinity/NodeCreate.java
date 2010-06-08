@@ -10,9 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.affinity.Client;
-import com.affinity.model.Node;
+import com.affinity.model.ContentType;
 
-public class NodeCreate extends Activity implements OnClickListener, DrupalFeature {
+public class NodeCreate extends Activity implements OnClickListener {
 	private Button btnSave;
 	
 	public String buttonText() {
@@ -37,7 +37,7 @@ public class NodeCreate extends Activity implements OnClickListener, DrupalFeatu
 			final String body = String.valueOf(//
 					((TextView) findViewById(R.id.Body)).getText());
 			
-			Node new_node = new Node(title, body);
+			ContentType new_node = new ContentType(title, body);
 			
 			Client.createNode(new_node);
 			

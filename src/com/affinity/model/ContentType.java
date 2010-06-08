@@ -1,19 +1,19 @@
 package com.affinity.model;
 
 /**
- * Simple class to represent a node in Drupal.
+ * Simple class to represent content types in Drupal.
  * 
  * @author tylor
  *
  */
-public class Node {
+public class ContentType {
 	private String title;
 	private String body;
 	private String type = "page";
 	
-	public Node() { }
+	public ContentType() { }
 	
-	public Node(String title, String body) {
+	public ContentType(String title, String body) {
 		this.title = title;
 		this.body = body;
 	}

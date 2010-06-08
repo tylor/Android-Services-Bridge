@@ -24,7 +24,7 @@ import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.affinity.model.Node;
+import com.affinity.model.ContentType;
 
 import android.util.Log;
 
@@ -122,7 +122,7 @@ public class Client {
 		return null;
 	}
 	
-	private static ArrayList<NameValuePair> createNodeValues(Node node) throws UnsupportedEncodingException, JSONException {
+	private static ArrayList<NameValuePair> createNodeValues(ContentType node) throws UnsupportedEncodingException, JSONException {
 	    ArrayList<NameValuePair> values = new ArrayList<NameValuePair>(1);
 	    values.add(new BasicNameValuePair("method", "\"node.save\""));
 	    
@@ -135,7 +135,7 @@ public class Client {
 	    return values;
 	}
 	
-	public static void createNode(Node node) {
+	public static void createNode(ContentType node) {
 		String url = "http://10.0.2.2/services/json";
 		DefaultHttpClient http_client = new DefaultHttpClient();
 		HttpPost post_method = new HttpPost(url);
