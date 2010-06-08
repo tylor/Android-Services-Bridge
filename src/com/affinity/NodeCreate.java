@@ -13,6 +13,7 @@ import com.affinity.model.Node;
 
 public class NodeCreate extends Activity implements OnClickListener {
 	private Button btnSave;
+	private String type;
 	
 	public String buttonText() {
 		return "Create node";
@@ -21,6 +22,9 @@ public class NodeCreate extends Activity implements OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        this.type = getIntent().getStringExtra("node_type");
+        
         setContentView(R.layout.node_create);
         // maybe here is where I can add extra fields.
         
@@ -37,7 +41,7 @@ public class NodeCreate extends Activity implements OnClickListener {
 			final String body = String.valueOf(//
 					((TextView) findViewById(R.id.Body)).getText());
 			
-			Node new_node = new Node(title, body, new ContentType("Page", "page"));
+			Node new_node = new Node(title, body, new ContentType("Page", type));
 			
 			Client.createNode(new_node);
 			

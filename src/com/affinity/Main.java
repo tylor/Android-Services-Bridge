@@ -86,7 +86,10 @@ public class Main extends Activity implements OnClickListener {
 			break;*/
     	case 1:
     		try {
-	    		Intent intentEdit = new Intent(this, NodeCreate.class);
+	    		//Intent intentEdit = new Intent(this, NodeCreate.class);
+    			Intent intentEdit = new Intent();
+    			intentEdit.setClass(this, NodeCreate.class);
+    			intentEdit.putExtra("node_type", "page");
 				startActivity(intentEdit);
     		} catch(Exception e) {
     			Log.d("main", "Failed to launch: " + e.getMessage());
